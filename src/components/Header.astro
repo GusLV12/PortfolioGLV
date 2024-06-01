@@ -5,16 +5,17 @@ import { ModeToggle } from '../components/ui/ThemeToggle'
 
 <script is:inline>
   document.addEventListener('astro:after-swap', function () {
-    if (localStorage.getItem('theme') === 'dark')
-      document.documentElement.classList.toggle('dark', true)
-  })
+    const isDark = localStorage.getItem('theme') === 'dark' || 
+                   (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    document.documentElement.classList.toggle('dark', isDark);
+  });
 
   const getThemePreference = () => {
-    return localStorage.getItem('theme')
+    return localStorage.getItem('theme') || 'dark';
   }
 
-  const isDark = getThemePreference() === 'dark'
-  document.documentElement.classList[isDark ? 'add' : 'remove']('dark')
+  const isDark = getThemePreference() === 'dark';
+  document.documentElement.classList.toggle('dark', isDark);
 </script>
 
 <header
@@ -25,13 +26,13 @@ import { ModeToggle } from '../components/ui/ThemeToggle'
   >
     <div class="flex gap-6 md:gap-10">
       <a href="/" class="flex items-center space-x-2">
-        <span class="inline-block font-bold">Bue221</span>
+        <span class="inline-block font-bold">GusLV</span>
       </a>
     </div>
     <div class="flex flex-1 items-center justify-end space-x-4">
       <nav class="flex items-center space-x-1">
         <a
-          href="https://github.com/bue221"
+          href="https://github.com/GusLV12/"
           target="_blank"
           rel="noreferrer"
           class={buttonVariants({ variant: 'ghost' })}

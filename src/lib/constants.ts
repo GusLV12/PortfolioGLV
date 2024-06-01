@@ -1,4 +1,4 @@
-import type { Site, Page } from './types'
+import type { Site, Page, Project } from './types'
 
 export const loaderAnimation = [
   '.loader',
@@ -7,12 +7,12 @@ export const loaderAnimation = [
 ]
 
 export const LINKS = {
-  github: 'https://github.com/bue221',
-  linkedin: 'https://www.linkedin.com/in/bue221/',
-  mail: 'mailto:camiloplaza3@gmail.com',
+  github: 'https://github.com/GusLV12/',
+  linkedin: 'https://www.linkedin.com/in/gustavo-linares-villegas-5a39a325a/',
+  mail: 'mailto:guslinaresv@gmail.com',
   instagram: 'https://www.instagram.com/ancap.tattoo/',
-  medium: 'https://ladvace.medium.com/',
-  discord: 'https://discordapp.com/users/163300027618295808',
+  medium: '#',
+  discord: '#',
 }
 
 // Global
@@ -50,18 +50,6 @@ export const SEARCH: Page = {
 // Study Page
 export const STUDIES = [
   {
-    title: 'Computer Science',
-    institution: 'Universidad Central',
-    link: 'https://www.ucentral.edu.co/',
-    date: '2019 - 2027',
-  },
-  {
-    title: '...',
-    institution: 'Platzi',
-    link: 'https://platzi.com/',
-    date: '2018 - 2022',
-  },
-  {
     title: '...',
     institution: 'Udemy',
     link: 'https://www.udemy.com/',
@@ -74,87 +62,77 @@ export const STUDIES = [
     date: '2018 - 2022',
   },
   {
-    title: 'Tattoo Artist',
-    institution: 'Tattoo Academy',
-    link: 'https://www.instagram.com/tattoodcacademy/',
+    title: '...',
+    institution: 'ESCOM',
+    link: 'https://www.escom.ipn.mx/',
     date: '2024 - 2025',
   },
 ]
 
 export const EXPERIENCE = [
   {
-    company: 'Straico',
-    location: 'Bogotá D C, Colombia',
-    position: 'Software Engineer',
-    start: '2021',
-    link: 'https://straico.com/',
-    end: 'Current',
+    company: 'WebDECero',
+    location: 'CDMX, México',
+    position: 'Software Engineer, Frontend',
+    start: '2024',
+    link: 'https://straico.https://www.webdecero.com/',
+    end: 'present',
     tasks: [
-      'Integration IA services with react and tailwind css',
-      'Development and build of DB with mongoDB',
-    ],
-  },
-  {
-    company: 'Spot2',
-    location: 'Mexico City, Mexico',
-    position: 'Software Engineer',
-    link: 'https://spot2.mx/',
-    start: '2021',
-    end: 'Current',
-    tasks: [
-      'Development of the Spot2 platform with the use of React, Redux, and Material UI',
-      'Development map with the use of Google Maps API',
       'Development internal platform with the use of React, Redux, and Material UI',
+      'Development of pages for various clients using React, Redux and Material UI',
       'Testing and debugging',
     ],
   },
-  {
-    company: 'Imaginamos',
-    link: 'https://imaginamos.com/',
-    location: 'Bogotá D C, Colombia',
-    position: 'Frontend developer',
-    start: '2021',
-    end: '2021',
-    tasks: [
-      'Development of the Imaginamos platform with the use of React, Redux, and Material UI',
-      'Work in ETB project with the use of React, Redux, and Material UI',
-    ],
-  },
-  {
-    company: 'INETUM',
-    location: 'Bogotá D C, Colombia',
-    position: 'Frontend developer',
-    start: '2021',
-    link: 'https://www.inetum.com/es',
-    end: '2021',
-    tasks: [
-      'Support in the QA area and bug review',
-      'Use of SCRUM methodology',
-      'Claro projects with the use of frameworks and libraries such as react and angular',
-      'Use of redux toolkit as aproposal which allowed a shorter development time when using this tool',
-    ],
-  },
-  {
-    company: 'S I G',
-    location: 'Bogotá D C, Colombia',
-    position: 'Software developer',
-    start: '2021',
-    end: '2021',
-    tasks: [
-      'Development of a dashboard with react admin and chartjs for managing and entering information',
-    ],
-  },
-  {
-    company: 'BOOKII',
-    location: 'Bogotá D C, Colombia',
-    position: 'Software developer',
-    start: '2019',
-    end: '2021',
-    tasks: [
-      'Productive collaborationwiththebackendteamforthecreationofthe conversationalclubs',
-      'Effective coding of conversational clubs following design guide lines and using the Redux statemanager',
-      'Creation of the Bookii page in Spanish and change of texts in cms',
-      'Generation of static posts using Gatsby and the Contentful cms for the Bookii blog',
-    ],
-  },
 ]
+
+// Projects List
+export const projects: Project[] = [
+  {
+    name: 'Buscador de imagenes.',
+    img: '/public/images/Buscador de imagenes.png',
+    repositorio: 'https://github.com/example/project-one',
+    description: 'Buscador de imagenes creado con React y consumiendo servicios de unplash.',
+  },
+  {
+    name: 'Interfaz.',
+    img: '/public/images/Interfaz-Java.png',
+    repositorio: 'https://github.com/example/project-two',
+    description: 'Interfaz creada con Java, permite registrar nombre y edad y colocarla en una base de datos.',
+  },
+  {
+    id: '2',
+    name: 'Calculadora.',
+    img: '/public/images/Calculadora.png',
+    repositorio: 'https://github.com/example/project-two',
+    description: 'Creada con React.',
+  },
+  {
+    id: '2',
+    name: 'Snake Game',
+    img: '/public/images/Snake retro.png',
+    repositorio: 'https://github.com/example/project-two',
+    description: 'Juego retro snake.',
+  },
+  {
+    id: '2',
+    name: 'Generador de contraseñas.',
+    img: '/public/images/Generador_pass.png',
+    repositorio: 'https://github.com/example/project-two',
+    description: 'Generadro de contraseñas con diferentes caracteres.',
+  },
+  {
+    id: '2',
+    name: 'To do.',
+    img: '/public/images/MisTareas.png',
+    repositorio: 'https://github.com/example/project-two',
+    description: 'Un creador de tareas usando la librería reduxToolkit.',
+  },
+  {
+    id: '2',
+    name: 'Reloj',
+    img: '/public/images/Reloj.png',
+    repositorio: 'https://github.com/example/project-two',
+    description: 'Reloj que muestra la hora de México, creado con vanilla Javascript',
+  },
+  
+];
