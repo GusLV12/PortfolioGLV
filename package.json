@@ -11,7 +11,7 @@
     "dev": "astro dev",
     "format": "prettier -w . --cache",
     "preview": "astro preview",
-    "start": "astro serve -s -n -L -p $PORT" 
+    "start": "astro preview"
   },
   "dependencies": {
     "@astrojs/react": "^3.1.0",
