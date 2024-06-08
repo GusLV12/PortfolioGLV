@@ -1,0 +1,39 @@
+---
+import { languages, tools } from '../../lib/constants'
+import TopLayout from '../../layouts/TopLayout.astro'
+import BottomLayout from '../../layouts/BottomLayout.astro'
+import ToolsCard from '../../components/ToolsCard.astro'
+---
+
+
+  <main class="flex min-h-[80vh] flex-auto flex-col" transition:animate="slide">
+    <TopLayout>
+      <h2 class="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
+        Programming Languages
+      </h2>
+    </TopLayout>
+    <BottomLayout>
+      <div class="flex w-full flex-wrap justify-center gap-2">
+        {languages.map((language) => (
+          <ToolsCard
+          imagePath={language.logo}
+          />
+        ))}
+      </div>
+
+    <TopLayout>
+      <h2 class="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
+        Development Tools 
+      </h2>
+    </TopLayout>
+    <BottomLayout>
+      <div class="flex w-full flex-wrap justify-center gap-2">
+        {tools.map((tool) => (
+          <ToolsCard
+          imagePath={tool.logo}
+          />
+        ))}
+      </div>
+
+  </main>
+</BaseLayout>

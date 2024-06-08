@@ -1,4 +1,4 @@
-import type { Site, Page, Project } from './types'
+import type { Site, Page, Project, Logo } from './types'
 
 export const loaderAnimation = [
   '.loader',
@@ -135,4 +135,76 @@ export const projects: Project[] = [
     description: 'Reloj que muestra la hora de México, creado con vanilla Javascript',
   },
   
+];
+
+export const languages: Logo[] = [
+  {
+    logo: 'public/languages/c++.svg'
+  },
+  {
+    logo: 'public/languages/c.svg'
+  },
+  {
+    logo: 'public/languages/css.svg'
+  },
+  {
+    logo: 'public/languages/html5.svg'
+  },
+  {
+    logo: 'public/languages/javascript.svg'
+  },
+  {
+    logo: 'public/languages/java.svg'
+  },
+  {
+    logo: 'public/languages/mongodb.svg'
+  },
+  {
+    logo: 'public/languages/mysql.svg'
+  },
+  {
+    logo: 'public/languages/postgresql.svg'
+  },
+  {
+    logo: 'public/languages/python.svg'
+  },
+  {
+    logo: 'public/languages/icons8-react.svg'
+  },
+  {
+    logo: 'public/languages/icons8-nextjs.svg'
+  },
+  {
+    logo: 'public/languages/icons8-google-cloud.svg'
+  },
+];
+
+export const tools: Logo[] = [
+  {
+    logo: 'public/tools/git.svg'
+  },
+  {
+    logo: 'public/tools/github.svg'
+  },
+  {
+    logo: 'public/tools/linux.svg'
+  },
+  {
+    logo: 'public/tools/visual-studio.svg'
+  },
+  {
+    logo: 'public/tools/vscode.svg'
+  },
+  {
+    logo: 'public/tools/windows.svg'
+  },
+  {
+    logo: 'public/tools/icons8-figma.svg'
+  },
+  {
+    logo: 'public/tools/icons8-webflow.svg'
+  },
+  {
+    logo: 'public/tools/wordpress.svg'
+  },
 ];

@@ -26,3 +26,7 @@ export interface Project {
   repositorio: string;
   description: string;
 }
+
+export interface Logo {
+  logo: string;
+}

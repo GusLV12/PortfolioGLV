@@ -1,9 +1,10 @@
 ---
-import { WORK, projects } from '../lib/constants'
+import { projects } from '../lib/constants'
 import BaseLayout from '../layouts/BaseLayout.astro'
 import TopLayout from '../layouts/TopLayout.astro'
 import BottomLayout from '../layouts/BottomLayout.astro'
 import ProjectCard from '../components/ProjectCard.astro'
+import Tools from '../components/section-portfolio/Tools.astro'
 ---
 
 <BaseLayout
@@ -30,5 +31,6 @@ import ProjectCard from '../components/ProjectCard.astro'
         ))}
       </div>
     </BottomLayout>
+    <Tools />
   </main>
 </BaseLayout>
