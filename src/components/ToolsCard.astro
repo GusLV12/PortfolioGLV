@@ -1,13 +1,8 @@
 ---
 const {
-  class: className,
   imagePath,
-  altText,
 } = Astro.props
 ---
-
-{imagePath.endsWith('.svg') && (
-  <div class={`${className} flex justify-center items-center mb-8 px-4`}>
-    <img src={imagePath} alt={altText} class="w-16 h-16 object-contain" />
+  <div class='flex justify-center items-center mb-8 px-4'>
+    <img src={imagePath} alt='error' class="w-16 h-16 object-contain" />
   </div>
-)}

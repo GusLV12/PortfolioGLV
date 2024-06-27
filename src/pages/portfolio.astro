@@ -1,10 +1,34 @@
 ---
-import { projects } from '../lib/constants'
-import BaseLayout from '../layouts/BaseLayout.astro'
-import TopLayout from '../layouts/TopLayout.astro'
-import BottomLayout from '../layouts/BottomLayout.astro'
-import ProjectCard from '../components/ProjectCard.astro'
-import Tools from '../components/section-portfolio/Tools.astro'
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TopLayout from '../layouts/TopLayout.astro';
+import BottomLayout from '../layouts/BottomLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import Tools from '../components/section-portfolio/Tools.astro';
+
+import { contentfulClient } from '../Auth/auth';
+import type { EntryFieldTypes } from 'contentful';
+
+interface Project {
+  contentTypeId: 'projects';
+  fields: {
+    name: EntryFieldTypes.Text;
+    img: EntryFieldTypes.AssetLink;
+    repository: EntryFieldTypes.Text;
+    description: EntryFieldTypes.Text;
+  };
+}
+
+// Obtener todos los proyectos y luego filtrar para excluir 'programmingLanguages'
+const entries = await contentfulClient.getEntries<Project>({
+  content_type: 'projects',
+});
+
+const filteredEntries = entries.items.filter((entry: any) => {
+  const contentType = entry.sys.contentType.sys.id;
+  return contentType !== 'programmingLanguages' && contentType !== 'developmentTools';
+});
+
+console.log('filtered data: ', filteredEntries);
 ---
 
 <BaseLayout
@@ -19,16 +43,26 @@ import Tools from '../components/section-portfolio/Tools.astro'
     </TopLayout>
     <BottomLayout>
       <div class="flex w-full flex-wrap justify-center gap-2">
-        {projects.map((project) => (
-          <ProjectCard
-            href={project.repositorio}
-            heading={projects.name}
-            subheading={project.description}
-            imagePath={project.img}
-            altText={project.name}
-            class="w-full sm:w-2/5"
-          />
-        ))}
+        {
+          filteredEntries.map((entry: any) => {
+            const imgUrl = entry?.fields?.img?.fields?.file?.url;
+            if (!imgUrl || typeof imgUrl !== 'string') {
+              console.error('Invalid image URL:', imgUrl);
+              return null;
+            }
+            return (
+              <ProjectCard
+                key={entry?.sys?.id}
+                href={entry?.fields?.repository}
+                heading={entry?.fields?.name}
+                subheading={entry?.fields?.description}
+                imagePath={imgUrl}
+                altText={entry?.fields?.img?.fields.title}
+                class="w-full sm:w-2/5"
+              />
+            );
+          })
+        }
       </div>
     </BottomLayout>
     <Tools />

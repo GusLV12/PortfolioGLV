@@ -1,8 +1,22 @@
 ---
-import { languages, tools } from '../../lib/constants'
-import TopLayout from '../../layouts/TopLayout.astro'
-import BottomLayout from '../../layouts/BottomLayout.astro'
-import ToolsCard from '../../components/ToolsCard.astro'
+import { languages, tools } from '../../lib/constants';
+import TopLayout from '../../layouts/TopLayout.astro';
+import BottomLayout from '../../layouts/BottomLayout.astro';
+import ToolsCard from '../../components/ToolsCard.astro';
+
+import { contentfulClient } from '../../Auth/auth';
+import type { EntryFieldTypes } from 'contentful';
+
+interface Project {
+  contentTypeId: 'programmingLanguages';
+  fields: {
+    technology: EntryFieldTypes.AssetLink;
+  };
+}
+
+const entries = await contentfulClient.getEntries<Project>({});
+const programmingLanguages = entries.items.filter(item => item.sys.contentType.sys.id === 'programmingLanguages');
+console.log('data: ', entries);
 ---
 
 
@@ -14,12 +28,21 @@ import ToolsCard from '../../components/ToolsCard.astro'
     </TopLayout>
     <BottomLayout>
       <div class="flex w-full flex-wrap justify-center gap-2">
-        {languages.map((language) => (
-          <ToolsCard
-          imagePath={language.logo}
-          />
-        ))}
+        {programmingLanguages.map((programmingLanguage: any) => {
+          const imgUrl = programmingLanguage?.fields?.technology?.fields?.file?.url;
+          if (!imgUrl || typeof imgUrl !== 'string') {
+            console.error('Invalid image URL:', imgUrl);
+            return null;
+          }
+          return (
+            <ToolsCard
+              key={programmingLanguage?.sys?.id}
+              imagePath={imgUrl}
+            />
+          );
+        })}
       </div>
+    </BottomLayout>
 
     <TopLayout>
       <h2 class="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
@@ -28,12 +51,20 @@ import ToolsCard from '../../components/ToolsCard.astro'
     </TopLayout>
     <BottomLayout>
       <div class="flex w-full flex-wrap justify-center gap-2">
-        {tools.map((tool) => (
-          <ToolsCard
-          imagePath={tool.logo}
-          />
-        ))}
+        {tools.map((tool) => {
+          const toolLogo = tool.logo;
+          if (!toolLogo || typeof toolLogo !== 'string') {
+            console.error('Invalid tool logo URL:', toolLogo);
+            return null;
+          }
+          return (
+            <ToolsCard
+              key={tool.name}
+              imagePath={toolLogo}
+            />
+          );
+        })}
       </div>
-
+    </BottomLayout>
   </main>
-</BaseLayout>
+
