@@ -1,5 +1,4 @@
 ---
-import { languages, tools } from '../../lib/constants';
 import TopLayout from '../../layouts/TopLayout.astro';
 import BottomLayout from '../../layouts/BottomLayout.astro';
 import ToolsCard from '../../components/ToolsCard.astro';
@@ -14,9 +13,18 @@ interface Project {
   };
 }
 
-const entries = await contentfulClient.getEntries<Project>({});
-const programmingLanguages = entries.items.filter(item => item.sys.contentType.sys.id === 'programmingLanguages');
-console.log('data: ', entries);
+interface Tools {
+  contentTypeId: 'developmentTools',
+  fields: {
+    tools: EntryFieldTypes.AssetLink;
+  }
+}
+
+const entriesLanguages = await contentfulClient.getEntries<Project>({});
+const programmingLanguages = entriesLanguages.items.filter(item => item.sys.contentType.sys.id === 'programmingLanguages');
+const entriesTools = await contentfulClient.getEntries<Tools>({});
+const programmingTools = entriesTools.items.filter(item => item.sys.contentType.sys.id === 'developmentTools');
+console.log('data: ', entriesLanguages, entriesTools );
 ---
 
 
@@ -51,16 +59,16 @@ console.log('data: ', entries);
     </TopLayout>
     <BottomLayout>
       <div class="flex w-full flex-wrap justify-center gap-2">
-        {tools.map((tool) => {
-          const toolLogo = tool.logo;
-          if (!toolLogo || typeof toolLogo !== 'string') {
-            console.error('Invalid tool logo URL:', toolLogo);
+        {programmingTools.map((programmingTool: any) => {
+          const imgUrl = programmingTool?.fields?.tools?.fields?.file?.url;
+          if (!imgUrl || typeof imgUrl !== 'string') {
+            console.error('Invalid image URL:', imgUrl);
             return null;
           }
           return (
             <ToolsCard
-              key={tool.name}
-              imagePath={toolLogo}
+              key={programmingTool?.sys?.id}
+              imagePath={imgUrl}
             />
           );
         })}
