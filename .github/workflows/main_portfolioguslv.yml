@@ -15,6 +15,11 @@ jobs:
     permissions:
       contents: read #This is required for actions/checkout
 
+    env:
+          CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
+          CONTENTFUL_DELIVERY_TOKEN: ${{ secrets.CONTENTFUL_DELIVERY_TOKEN }}
+          CONTENTFUL_PREVIEW_TOKEN: ${{ secrets.CONTENTFUL_PREVIEW_TOKEN }}
+
     steps:
       - uses: actions/checkout@v4
 
@@ -61,5 +66,5 @@ jobs:
         with:
           app-name: 'portfolioguslv'
           slot-name: 'Production'
-          package: .
+          package: ./dist
           
