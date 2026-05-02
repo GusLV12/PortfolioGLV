@@ -1,14 +1,22 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import moment from 'moment-timezone'
 
-const Timezone = ({ timezone }: any) => {
+interface TimezoneProps {
+  timezone: string
+}
+
+const Timezone = ({ timezone }: TimezoneProps) => {
   const [dateTime, setDateTime] = useState('')
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      const now = moment().tz(timezone)
+    const zone = moment.tz.zone(timezone) ? timezone : 'America/Mexico_City'
+    const updateDateTime = () => {
+      const now = moment().tz(zone)
       setDateTime(now.format('dddd, DD MMMM YYYY [a] h:mm:ss A'))
-    }, 1000)
+    }
+
+    updateDateTime()
+    const interval = setInterval(updateDateTime, 1000)
 
     return () => clearInterval(interval)
   }, [timezone])
@@ -16,7 +24,7 @@ const Timezone = ({ timezone }: any) => {
   return (
     <div>
       <p>{dateTime}</p>
-      <p className="text-sm text-gray-500">CDMX, México mx.</p>
+      <p className="text-sm text-gray-500">CDMX, Mexico mx.</p>
     </div>
   )
 }

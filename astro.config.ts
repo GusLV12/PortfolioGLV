@@ -7,6 +7,14 @@ export default defineConfig({
   site: process.env.CI
     ? 'https://astro-shadcn-ui-template.vercel.app'
     : 'http://localhost:4321',
+  devToolbar: {
+    enabled: false,
+  },
+  vite: {
+    optimizeDeps: {
+      include: ['react-dom/client'],
+    },
+  },
   integrations: [
     react(),
     tailwind({

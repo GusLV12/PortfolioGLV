@@ -19,16 +19,17 @@ interface Project {
 }
 
 // Obtener todos los proyectos y luego filtrar para excluir 'programmingLanguages'
-const entries = await contentfulClient.getEntries<Project>({
-  content_type: 'projects',
-});
+const entries = contentfulClient
+  ? await contentfulClient.getEntries<Project>({
+      content_type: 'projects',
+    })
+  : { items: [] };
 
 const filteredEntries = entries.items.filter((entry: any) => {
   const contentType = entry.sys.contentType.sys.id;
   return contentType !== 'programmingLanguages' && contentType !== 'developmentTools';
 });
 
-console.log('filtered data: ', filteredEntries);
 ---
 
 <BaseLayout

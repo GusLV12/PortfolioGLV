@@ -20,11 +20,14 @@ interface Tools {
   }
 }
 
-const entriesLanguages = await contentfulClient.getEntries<Project>({});
+const entriesLanguages = contentfulClient
+  ? await contentfulClient.getEntries<Project>({})
+  : { items: [] };
 const programmingLanguages = entriesLanguages.items.filter(item => item.sys.contentType.sys.id === 'programmingLanguages');
-const entriesTools = await contentfulClient.getEntries<Tools>({});
+const entriesTools = contentfulClient
+  ? await contentfulClient.getEntries<Tools>({})
+  : { items: [] };
 const programmingTools = entriesTools.items.filter(item => item.sys.contentType.sys.id === 'developmentTools');
-console.log('data: ', entriesLanguages, entriesTools );
 ---
 
 
